@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', ReactView.as_view(), name="homepage"),
     path('profile/', include("user_management.urls", namespace="user_management")),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
