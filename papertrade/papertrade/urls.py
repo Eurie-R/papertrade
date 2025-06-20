@@ -24,4 +24,5 @@ urlpatterns = [
     path('', ReactView.as_view(), name="homepage"),
     path('profile/', include("user_management.urls", namespace="user_management")),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('trade/', include('tradeapp.urls', namespace='tradeapp')),
 ]
