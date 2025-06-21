@@ -7,7 +7,8 @@ from . import views
 
 urlpatterns = [
     path('livemarket/', views.liveMarket, name="livemarket"),
-    path('strategymanagement', views.strategyManagement, name='strategymanagement')
+    path('strategymanagement', views.strategyManagement, name='strategymanagement'),
+    path('', views.getData)
 ]
 
 #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
