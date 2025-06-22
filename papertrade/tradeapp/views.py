@@ -5,6 +5,9 @@ from rest_framework.response import Response
 from . serializer import *
 from rest_framework.decorators import api_view
 from . alpaca_client import *
+from alpaca.data.requests import CryptoBarsRequest
+from alpaca.data.timeframe import TimeFrame
+import pandas as pd
 
 class ReactView(APIView):
     def get(self, request):
@@ -20,8 +23,12 @@ class ReactView(APIView):
 
 @api_view(['GET'])
 def liveMarket(request):
-    assets = broker_client.get_all_assets()
-    ctx = {"assets": assets}
+    request_params = CryptoBarsRequest(
+        symbol_or_symbols=['BTC/USD'],
+        timeframe=TimeFrame.Day, 
+    )
+    btc_bars = crypto_client.get_crypto_bars(request_params)
+    ctx = {'btc':btc_bars.df}
     return render(request,'livemarket.html', ctx)
 
 def strategyManagement(request):
