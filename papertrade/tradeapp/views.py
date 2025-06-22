@@ -4,6 +4,7 @@ from . models import *
 from rest_framework.response import Response 
 from . serializer import *
 from rest_framework.decorators import api_view
+from . alpaca_client import *
 
 class ReactView(APIView):
     def get(self, request):
@@ -17,9 +18,11 @@ class ReactView(APIView):
             serializer.save()
             return Response(serializer.data)
 
-
+@api_view(['GET'])
 def liveMarket(request):
-    return render(request,'livemarket.html')
+    assets = broker_client.get_all_assets()
+    ctx = {"assets": assets}
+    return render(request,'livemarket.html', ctx)
 
 def strategyManagement(request):
     return render(request,'strategymanagement.html')

@@ -1,5 +1,6 @@
  
 from alpaca.trading.client import TradingClient
+from alpaca.broker.client import BrokerClient
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.requests import CryptoLatestQuoteRequest 
 from alpaca.data.timeframe import TimeFrame
@@ -29,4 +30,7 @@ trading_client = TradingClient(API_KEY, SECRET_KEY, paper=True)
 
 #Market Data 
 data_client = StockHistoricalDataClient(API_KEY, SECRET_KEY)
+
+#Broker API client 
+broker_client = BrokerClient(API_KEY, SECRET_KEY, sandbox=True)
 
