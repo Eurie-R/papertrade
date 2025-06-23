@@ -3,9 +3,11 @@ from alpaca.trading.client import TradingClient
 from alpaca.broker.client import BrokerClient
 from alpaca.data.historical import StockHistoricalDataClient, CryptoHistoricalDataClient
 from alpaca.data.requests import CryptoLatestQuoteRequest 
+from alpaca.data.live.crypto import CryptoDataStream
 from alpaca.data.timeframe import TimeFrame
 import sys
 import os
+
 
 
 # Get the absolute path to the root directory 
@@ -34,4 +36,7 @@ crypto_client = CryptoHistoricalDataClient()
 
 #Broker API client 
 broker_client = BrokerClient(API_KEY, SECRET_KEY, sandbox=True)
+
+#CryptoDataStream client 
+crypto_data_stream = CryptoDataStream(API_KEY, SECRET_KEY, raw_data=False)
 

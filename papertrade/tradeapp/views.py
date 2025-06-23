@@ -8,6 +8,8 @@ from . alpaca_client import *
 from alpaca.data.requests import CryptoBarsRequest
 from alpaca.data.timeframe import TimeFrame
 import pandas as pd
+import datetime as dt
+
 
 class ReactView(APIView):
     def get(self, request):
@@ -27,6 +29,7 @@ def liveMarket(request):
         symbol_or_symbols=['BTC/USD'],
         timeframe=TimeFrame.Day, 
     )
+    crypto_data_stream.subscribe_daily_bars()
     btc_bars = crypto_client.get_crypto_bars(request_params)
     ctx = {'btc':btc_bars.df}
     return render(request,'livemarket.html', ctx)
